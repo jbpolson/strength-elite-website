@@ -1,0 +1,12 @@
+strength-elite-website/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── img/
+│   ├── kev-portrait.jpg
+│   ├── kev-overhead-press.jpg
+│   ├── runner.jpg
+│   └── female-athlete.jpg
+└── README.md 
