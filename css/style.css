@@ -486,18 +486,23 @@ body {
     }
     
     .programs-grid {
-        gap: calc(var(--spacing-unit) * 4);
+        grid-template-columns: 1fr;
+        gap: calc(var(--spacing-unit) * 3);
         padding: 0 calc(var(--spacing-unit) * 2);
     }
     
     .program {
         min-height: auto;
         padding: calc(var(--spacing-unit) * 4);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        background-color: var(--color-white);
     }
     
     .program:hover {
-        transform: none;  /* Disable hover effect on mobile */
-        box-shadow: none;
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.08);
     }
     
     .program-title {
@@ -506,39 +511,17 @@ body {
     }
     
     .program-text {
-        -webkit-line-clamp: 5; /* Slightly fewer lines on mobile */
         font-size: 0.95rem;
         margin-bottom: calc(var(--spacing-unit) * 3);
+        -webkit-line-clamp: none;
+        display: block;
+        overflow: visible;
     }
     
     .program-footer {
         margin-top: calc(var(--spacing-unit) * 3);
         padding-top: calc(var(--spacing-unit) * 3);
-    }
-    
-    .program-levels {
-        font-size: 0.85rem;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-    }
-    
-    .program-link {
-        font-size: 0.9rem;
-        padding: calc(var(--spacing-unit) * 1.5) 0;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    /* Make the CTA button more prominent */
-    .programs-cta {
-        margin-top: calc(var(--spacing-unit) * 6);
-        padding: 0 calc(var(--spacing-unit) * 2);
-    }
-    
-    .button {
-        width: 100%;
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 4);
-        font-size: 1rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
 }
 
@@ -962,6 +945,29 @@ body {
     width: auto;
     display: block;
     filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+    object-fit: contain;
+    transform: translateZ(0);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    .navbar-logo {
+        height: 20px;
+        /* Ensure crisp rendering on mobile */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+}
+
+/* Footer logo should match */
+.footer-logo {
+    height: 20px;
+    width: auto;
+    opacity: 0.9;
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+    object-fit: contain;
 }
 
 /* Mobile Navbar Optimizations */
@@ -1605,6 +1611,8 @@ section::after {
     width: auto;
     opacity: 0.9;
     filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+    object-fit: contain;
 }
 
 .footer-info {
