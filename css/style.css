@@ -918,11 +918,14 @@ body {
     z-index: 1000;
     transition: var(--transition-standard);
     border-bottom: none;
-    backdrop-filter: blur(8px);
 }
 
 .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: transparent;
+}
+
+.navbar {
+    backdrop-filter: none;
 }
 
 .navbar .container {
