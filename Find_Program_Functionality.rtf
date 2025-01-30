@@ -180,6 +180,51 @@
 7. Error handling
 8. Data validation
 
+## **7. Program Recommendation Algorithm**
+
+### **7.1 Program Selection**
+Program selection is primarily based on the user's primary goal:
+- "Train for event" → Hyrox Program
+- "Build muscle" → Mass Program
+- "Get fit" → Fit Program (default)
+
+### **7.2 Level Determination**
+Level is calculated using a point-based system (0-15 points possible):
+
+1. **Training Frequency (1-3 points)**
+   - 6+ times per week: 3 points
+   - 3-5 times per week: 2 points
+   - Less than 3 times: 1 point
+
+2. **Sports Background (0-2 points)**
+   - Experienced athlete: 2 points
+   - New to training: 0 points
+
+3. **Competition History (0-2 points)**
+   - Previous competition experience: 2 points
+   - No competition history: 0 points
+
+4. **5km Performance (0-3 points)**
+   - Sub 16 mins: 3 points
+   - 16-20 mins: 2 points
+   - Other times: 0 points
+
+5. **Strength Indicator (0-3 points)**
+   - 15+ chin-ups: 3 points
+   - 10-15 chin-ups: 2 points
+   - Less than 10: 0 points
+
+### **7.3 Level Assignment**
+Total points determine the recommended level:
+- 10+ points: Elite Level
+- 6-9 points: Advanced Level
+- 0-5 points: Intermediate Level
+
+### **7.4 User Override**
+- Users can manually override the recommended level
+- Final selection is recorded with both recommended and selected levels
+- System maintains original recommendation for analytics
+
 ---
 
 **End of Documentation**

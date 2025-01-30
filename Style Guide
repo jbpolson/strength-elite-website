@@ -1,0 +1,113 @@
+# Strength Elite Style Guide
+
+## Colors
+
+### Primary Colors
+- Background: `#F5F6F7`
+- Text: `#000000`
+- White: `#FFFFFF`
+- Accent Blue: `#3030FF`
+- Hover Blue: `#4040FF`
+
+### Text Opacity
+- Primary Text: 1.0
+- Secondary Text: 0.85
+- Tertiary Text: 0.7
+
+## Typography
+
+### Fonts
+- Primary Font: 'Funnel Display'
+  - Display/Headings: 800 (Extrabold, all uppercase)
+  - Subheadings: 600 (SemiBold, sentence case)
+  - Body Text: 400 (Regular)
+
+### Type Scale
+- Hero Title: `clamp(4.2rem, 8.64vw, 7.2rem)` (Extrabold 800, uppercase)
+- Section Title: `clamp(4.2rem, 8.64vw, 7.2rem)` (Extrabold 800, uppercase)
+- Program Title: `clamp(2rem, 4vw, 2.5rem)` (Extrabold 800, sentence case)
+- Body Text: `1rem` (Regular 400)
+- Small Text: `0.9rem` (Regular 400)
+
+### Line Heights
+- Headings: 0.9
+- Body Text: 1.6
+- Buttons: 1
+
+## Spacing
+
+### Base Unit
+- Spacing Unit: `8px`
+- Container Padding: `clamp(24px, 5vw, 80px)`
+
+### Common Spacing
+- Section Padding: `calc(var(--spacing-unit) * 12) 0`
+- Component Gap: `calc(var(--spacing-unit) * 4)`
+- Button Padding: `calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3)`
+
+## Components
+
+### Buttons
+1. Primary Button
+   - Background: `#3030FF`
+   - Text Color: `#FFFFFF`
+   - Border Radius: `8px`
+   - Hover: Background `#4040FF`
+   - Shadow: `0 4px 12px rgba(0, 0, 0, 0.15)`
+   - Hover Shadow: `0 6px 16px rgba(0, 0, 0, 0.2)`
+
+2. Hero Button
+   - Inherits from Primary Button
+   - Same styling as Primary
+
+### Cards
+- Border Radius: `16px`
+- Background: `#FFFFFF`
+- Shadow: `0 20px 40px rgba(0,0,0,0.1)`
+
+## Transitions
+- Standard: `all 0.3s ease`
+- Button Arrow: `transform 0.3s ease`
+- Sticky CTA: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1)`
+
+## Breakpoints
+- Mobile: `max-width: 768px`
+- Tablet: `max-width: 1024px`
+- Desktop: `max-width: 1440px`
+
+## CSS Variables
+```css
+:root {
+    /* Colors */
+    --color-background: #F5F6F7;
+    --color-text: #000000;
+    --color-white: #FFFFFF;
+    
+    /* Typography */
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    
+    /* Spacing */
+    --spacing-unit: 8px;
+    --container-padding: clamp(24px, 5vw, 80px);
+    
+    /* Other */
+    --transition-standard: all 0.3s ease;
+    --text-opacity: 0.85;
+    --heading-letter-spacing: 0.02em;
+}
+```
+
+## Best Practices
+1. Use CSS variables for consistent theming
+2. Implement fluid typography with clamp()
+3. Mobile-first responsive design
+4. Maintain consistent spacing with spacing unit
+5. Use semantic HTML elements
+6. Ensure adequate color contrast for accessibility
+
+## Accessibility
+- Minimum contrast ratio: 4.5:1
+- Focus states on interactive elements
+- Semantic HTML structure
+- ARIA labels where needed

@@ -83,6 +83,286 @@ const PROGRAM_URLS = {
     'Fit': 'https://share.newie.app/offerings/5582A194-23C4-46BD-A061-2143F4D1ABBA'
 };
 
+// Survey Configuration
+const SURVEY_CONFIG = {
+    hyrox: {
+        title: "HYROX Level Assessment",
+        description: "Let's determine your ideal HYROX program level based on your current fitness and experience.",
+        questions: [
+            {
+                id: 'run_time',
+                text: "What's your current 5km run time?",
+                options: [
+                    { text: 'Under 20 mins', value: 'elite' },
+                    { text: '20-25 mins', value: 'advanced' },
+                    { text: 'Over 25 mins', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'wall_balls',
+                text: "How many unbroken wall balls (20/14 lbs) can you perform?",
+                options: [
+                    { text: '30+ reps', value: 'elite' },
+                    { text: '15-30 reps', value: 'advanced' },
+                    { text: 'Under 15 reps', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'farmers_carry',
+                text: "Farmers carry (2x24kg/2x16kg) - How far can you go without stopping?",
+                options: [
+                    { text: '400m+', value: 'elite' },
+                    { text: '200-400m', value: 'advanced' },
+                    { text: 'Under 200m', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'sled_experience',
+                text: "Sled push/pull experience level?",
+                options: [
+                    { text: 'Regular competitor', value: 'elite' },
+                    { text: 'Some experience', value: 'advanced' },
+                    { text: 'Beginner', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'competition_experience',
+                text: "Previous HYROX competition experience?",
+                options: [
+                    { text: 'Multiple competitions', value: 'elite' },
+                    { text: 'One competition', value: 'advanced' },
+                    { text: 'Never competed', value: 'intermediate' }
+                ]
+            }
+        ]
+    },
+    mass: {
+        title: "Mass Program Assessment",
+        description: "Let's determine your ideal Mass program level based on your strength and training experience.",
+        questions: [
+            {
+                id: 'bench_press',
+                text: "What's your current bench press 1RM (relative to bodyweight)?",
+                options: [
+                    { text: 'More than 1.5x bodyweight', value: 'elite' },
+                    { text: '1.2-1.5x bodyweight', value: 'advanced' },
+                    { text: 'Less than 1.2x bodyweight', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'squat_experience',
+                text: "Squat experience and form?",
+                options: [
+                    { text: 'Perfect form, heavy loads', value: 'elite' },
+                    { text: 'Good form, moderate loads', value: 'advanced' },
+                    { text: 'Learning proper form', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'training_experience',
+                text: "Training experience with hypertrophy programs?",
+                options: [
+                    { text: '5+ years', value: 'elite' },
+                    { text: '2-5 years', value: 'advanced' },
+                    { text: '0-2 years', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'recovery_capacity',
+                text: "How many intense sessions can you handle per week?",
+                options: [
+                    { text: '5+ sessions', value: 'elite' },
+                    { text: '3-4 sessions', value: 'advanced' },
+                    { text: '1-2 sessions', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'nutrition_understanding',
+                text: "Nutrition understanding and compliance?",
+                options: [
+                    { text: 'Track macros consistently', value: 'elite' },
+                    { text: 'Basic nutrition knowledge', value: 'advanced' },
+                    { text: 'Minimal experience', value: 'intermediate' }
+                ]
+            }
+        ]
+    },
+    fit: {
+        title: "Fit Program Assessment",
+        description: "Let's determine your ideal Fit program level based on your current lifestyle and fitness goals.",
+        questions: [
+            {
+                id: 'activity_level',
+                text: "Current activity level per week?",
+                options: [
+                    { text: 'Very active (6-7 days)', value: 'elite' },
+                    { text: 'Moderately active (3-5 days)', value: 'advanced' },
+                    { text: 'Sometimes active (1-2 days)', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'workout_experience',
+                text: "Experience with structured workouts?",
+                options: [
+                    { text: 'Regular gym-goer', value: 'elite' },
+                    { text: 'Some experience', value: 'advanced' },
+                    { text: 'Beginner', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'fitness_goals',
+                text: "Current fitness goals?",
+                options: [
+                    { text: 'Performance focused', value: 'elite' },
+                    { text: 'Body composition', value: 'advanced' },
+                    { text: 'General health', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'time_available',
+                text: "Time available for training?",
+                options: [
+                    { text: '60+ mins/day', value: 'elite' },
+                    { text: '30-60 mins/day', value: 'advanced' },
+                    { text: '<30 mins/day', value: 'intermediate' }
+                ]
+            },
+            {
+                id: 'movement_competency',
+                text: "Movement competency (burpees, push-ups, etc.)?",
+                options: [
+                    { text: 'Advanced movements', value: 'elite' },
+                    { text: 'Basic movements', value: 'advanced' },
+                    { text: 'Learning fundamentals', value: 'intermediate' }
+                ]
+            }
+        ]
+    }
+};
+
+// Separate state for different survey types
+let currentSurveyType = null; // 'general' or 'level-assessment'
+let currentProgram = null;
+let currentQuestion = 0;
+let answers = [];
+
+// Initialize level assessment for specific program
+function initializeLevelAssessment(programType) {
+    currentSurveyType = 'level-assessment';
+    currentProgram = programType;
+    currentQuestion = 0;
+    answers = [];
+    
+    // Show program-specific survey
+    const surveyModal = document.getElementById('surveyModal');
+    renderProgramAssessment();
+    surveyModal.classList.add('active');
+}
+
+// Initialize general program finder survey
+function openGeneralSurvey() {
+    const modal = document.getElementById('surveyModal');
+    if (modal) {
+        modal.classList.add('active');
+        // ... rest of general survey initialization
+    }
+}
+
+// Render appropriate survey type
+function renderCurrentQuestion() {
+    if (currentSurveyType === 'level-assessment') {
+        renderProgramAssessment();
+    } else {
+        renderGeneralSurvey();
+    }
+}
+
+// Render program-specific assessment
+function renderProgramAssessment() {
+    const surveyModal = document.getElementById('surveyModal');
+    const config = SURVEY_CONFIG[currentProgram];
+    const question = config.questions[currentQuestion];
+    
+    // Update header
+    document.querySelector('.survey-program-title').textContent = config.title;
+    document.querySelector('.survey-program-desc').textContent = config.description;
+    
+    // Update question container
+    const questionContainer = document.querySelector('.survey-question-container');
+    questionContainer.innerHTML = `
+        <div class="survey-question">${question.text}</div>
+        <div class="survey-options">
+            ${question.options.map(option => `
+                <label class="survey-option">
+                    <input type="radio" name="question" value="${option.value}">
+                    <span class="option-text">${option.text}</span>
+                </label>
+            `).join('')}
+        </div>
+    `;
+    
+    updateNavigationUI();
+}
+
+// Render general program finder survey
+function renderGeneralSurvey() {
+    const surveyModal = document.getElementById('surveyModal');
+    const question = GENERAL_SURVEY_QUESTIONS[currentQuestion];
+    
+    // Update header
+    document.querySelector('.survey-program-title').textContent = "Find Your Program";
+    document.querySelector('.survey-program-desc').textContent = "Let's find the perfect program for your goals and experience level.";
+    
+    // Update question container
+    const questionContainer = document.querySelector('.survey-question-container');
+    questionContainer.innerHTML = `
+        <div class="survey-question">${question.text}</div>
+        <div class="survey-options">
+            ${question.options.map(option => `
+                <label class="survey-option">
+                    <input type="radio" name="question" value="${option.value}">
+                    <span class="option-text">${option.text}</span>
+                </label>
+            `).join('')}
+        </div>
+    `;
+    
+    updateNavigationUI();
+}
+
+// Update navigation UI
+function updateNavigationUI() {
+    const questions = currentSurveyType === 'level-assessment' 
+        ? SURVEY_CONFIG[currentProgram].questions 
+        : GENERAL_SURVEY_QUESTIONS;
+    
+    document.querySelector('.current-question').textContent = currentQuestion + 1;
+    document.querySelector('.total-questions').textContent = questions.length;
+    
+    const backBtn = document.querySelector('.survey-back-btn');
+    backBtn.style.display = currentQuestion === 0 ? 'none' : 'block';
+    
+    const nextBtn = document.querySelector('.survey-next-btn');
+    nextBtn.textContent = currentQuestion === questions.length - 1 ? 'Finish' : 'Next';
+}
+
+// Determine level based on answers
+function determineLevel(answers) {
+    const counts = {
+        elite: 0,
+        advanced: 0,
+        intermediate: 0
+    };
+    
+    answers.forEach(answer => {
+        counts[answer]++;
+    });
+    
+    if (counts.elite >= 4) return 'Elite';
+    if (counts.elite >= 2 || counts.advanced >= 3) return 'Advanced';
+    return 'Intermediate';
+}
+
 // Initialize survey functionality
 document.addEventListener('DOMContentLoaded', function() {
     const findProgramBtns = document.querySelectorAll('.button');
@@ -212,6 +492,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Listen for scroll
     window.addEventListener('scroll', updateNavbar);
+
+    // Add this to your existing DOMContentLoaded event listener if not already present
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
 
 // Survey functions
@@ -594,4 +887,28 @@ async function handleDirectSubmission() {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
-} 
+}
+
+// Show results and capture contact
+function showResults(program, level) {
+    const surveyModal = document.getElementById('surveyModal');
+    surveyModal.classList.remove('active');
+    
+    // Update contact capture modal with results
+    const selectedProgramDisplay = document.querySelector('.selected-program-display');
+    const selectedLevelDisplay = document.querySelector('.selected-level-display');
+    const levelSelect = document.getElementById('directLevelSelect');
+    
+    selectedProgramDisplay.textContent = program.charAt(0).toUpperCase() + program.slice(1);
+    selectedLevelDisplay.textContent = level;
+    levelSelect.value = level;
+    
+    // Show contact capture modal
+    const contactModal = document.querySelector('.contact-capture-modal');
+    contactModal.classList.add('active');
+}
+
+// Keep only the general survey code here
+const GENERAL_SURVEY_QUESTIONS = [
+    // ... your general survey questions
+]; 

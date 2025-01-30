@@ -7,26 +7,30 @@
     <!-- Adding Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="sticky-cta">
-        <a href="#programs" class="sticky-button">
-            Find My Program
-            <span class="sticky-button-arrow">→</span>
-        </a>
-    </div>
-
+    <!-- Replace announcement bar and navbar with single nav -->
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="navbar-brand">
-                <img src="./img/SE_HorizontalSE.svg" alt="Strength Elite" class="navbar-logo">
-            </a>
+            <div class="navbar-content">
+                <a href="#programs" class="navbar-text">
+                    Start Training
+                    <span class="button-arrow">→</span>
+                </a>
+                <a href="index.html" class="navbar-brand">
+                    <img src="./img/SE_HorizontalSE.svg" alt="Strength Elite" class="navbar-logo">
+                </a>
+                <div class="navbar-links">
+                    <a href="art-and-science.html">Art & Science <span class="button-arrow">→</span></a>
+                </div>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
+        <div class="hero-background"></div>
         <div class="container">
             <h1 class="hero-title">
                 <span class="hero-title-main">The Art & Science</span>
@@ -35,18 +39,12 @@
             
             <p class="hero-text">At Strength Elite, we transform athletic potential into peak performance through cutting-edge programming rooted in over two decades of experience and a deep foundation in Sports Science.</p>
             
-            <div class="hero-collage">
-                <img src="./img/runner.png" alt="Runner in Black Sheep Run Club singlet" class="collage-img runner">
-                <img src="./img/kev-overhead-press.png" alt="Kev Toonen performing overhead press" class="collage-img press">
-                <img src="./img/female-athlete.png" alt="Female athlete in motion" class="collage-img athlete">
-            </div>
-
-            <p class="hero-cta">
-                All programs are available on the Strength Elite App
-                <a href="#" class="app-store-link">
-                    <img src="./img/app-store-badge.svg" alt="Download on the App Store" class="app-store-badge">
+            <div class="hero-cta">
+                <a href="#programs" class="button button-hero">
+                    Start Training
+                    <span class="button-arrow">→</span>
                 </a>
-            </p>
+            </div>
         </div>
     </header>
 
@@ -71,35 +69,56 @@
             
             <div class="programs-grid">
                 <div class="program">
-                    <h3 class="program-title">Hyrox</h3>
-                    <p class="program-text">Whether you're an ex-endurance athlete ready to conquer this thing called Hyrox, or a disgruntled CrossFitter eager to show who's truly fitter, we've got the expertise to get you race-ready. From perfecting technique to building the conditioning for one of the hardest physical challenges out there, our programs are designed to prepare you in every way.</p>
-                    <div class="program-footer">
-                        <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
-                        <a href="https://share.newie.app/providers/BJF3ci0LYFgMLiTSWk3OrpzDzu23" class="program-link">Choose Program →</a>
+                    <div class="program-background"></div>
+                    <div class="program-content">
+                        <h3 class="program-title">Hyrox</h3>
+                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
+                        <div class="program-footer">
+                            <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
+                            <button class="program-button" data-program="hyrox">
+                                Choose Program
+                                <span class="button-arrow">→</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="program">
-                    <h3 class="program-title">Mass</h3>
-                    <p class="program-text">Designed specifically those who want to build size and strength, our program is the ultimate solution for anyone who wants to take their training to the next level. You'll get access to cutting-edge training techniques that are proven to stimulate muscle growth.</p>
-                    <div class="program-footer">
-                        <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
-                        <a href="https://share.newie.app/providers/BJF3ci0LYFgMLiTSWk3OrpzDzu23" class="program-link">Choose Program →</a>
+                    <div class="program-background"></div>
+                    <div class="program-content">
+                        <h3 class="program-title">Mass</h3>
+                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
+                        <div class="program-footer">
+                            <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
+                            <button class="program-button" data-program="mass">
+                                Choose Program
+                                <span class="button-arrow">→</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="program">
-                    <h3 class="program-title">Fit</h3>
-                    <p class="program-text">This program is designed to maximise results in a focused 40 - 50 minute session, 3-4 days per week. We'll help you build lean muscle mass, which not only enhances your overall strength but also boosts your metabolism, leading to increased calorie burn even outside of the gym.</p>
-                    <div class="program-footer">
-                        <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
-                        <a href="https://share.newie.app/providers/BJF3ci0LYFgMLiTSWk3OrpzDzu23" class="program-link">Choose Program →</a>
+                    <div class="program-background"></div>
+                    <div class="program-content">
+                        <h3 class="program-title">Fit</h3>
+                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
+                        <div class="program-footer">
+                            <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
+                            <button class="program-button" data-program="fit">
+                                Choose Program
+                                <span class="button-arrow">→</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="programs-cta">
-                <a href="#" class="button">Find Program</a>
+                <a href="#" class="button button-primary">
+                    Find Program
+                    <span class="button-arrow">→</span>
+                </a>
             </div>
         </div>
     </section>
@@ -121,13 +140,8 @@
                 </div>
             </div>
 
-            <div class="app-mockups">
-                <div class="mockup">
-                    <img src="./img/strength_elite_app_interface.png" alt="Strength Elite App Interface" class="mockup-img">
-                </div>
-                <div class="mockup">
-                    <img src="./img/strength_elite_app_workout_screen.png" alt="Strength Elite App Workout Screen" class="mockup-img">
-                </div>
+            <div class="app-mockup">
+                <img src="./img/appexample.png" alt="Strength Elite App Interface" class="mockup-img">
             </div>
         </div>
     </section>
@@ -172,27 +186,59 @@
         </div>
     </footer>
 
-    <div id="surveyModal" class="survey-modal">
+    <!-- Hyrox Assessment Modal -->
+    <div id="hyrox-assessment" class="survey-modal">
         <div class="survey-modal-content">
             <button class="survey-close-btn">&times;</button>
-            
-            <!-- Step 1 -->
-            <div class="survey-step active" data-step="1">
-                <h3 class="survey-question">What is your gender?</h3>
-                <div class="survey-options">
-                    <label class="survey-option">
-                        <input type="radio" name="gender" value="Male">
-                        <span class="option-text">Male</span>
-                    </label>
-                    <label class="survey-option">
-                        <input type="radio" name="gender" value="Female">
-                        <span class="option-text">Female</span>
-                    </label>
-                </div>
-                <div class="survey-nav">
-                    <div class="survey-progress">Step 1 of 8</div>
-                    <button class="survey-next-btn">Next</button>
-                </div>
+            <div class="survey-header">
+                <h3 class="survey-program-title">HYROX Level Assessment</h3>
+                <p class="survey-program-desc">Let's determine your ideal HYROX program level based on your current fitness and experience.</p>
+            </div>
+            <div class="survey-question-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-nav">
+                <button class="survey-back-btn" style="display: none;">Back</button>
+                <div class="survey-progress">Question <span class="current-question">1</span> of <span class="total-questions">5</span></div>
+                <button class="survey-next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mass Assessment Modal -->
+    <div id="mass-assessment" class="survey-modal">
+        <div class="survey-modal-content">
+            <button class="survey-close-btn">&times;</button>
+            <div class="survey-header">
+                <h3 class="survey-program-title">Mass Level Assessment</h3>
+                <p class="survey-program-desc">Let's determine your ideal Mass program level based on your strength and training experience.</p>
+            </div>
+            <div class="survey-question-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-nav">
+                <button class="survey-back-btn" style="display: none;">Back</button>
+                <div class="survey-progress">Question <span class="current-question">1</span> of <span class="total-questions">5</span></div>
+                <button class="survey-next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fit Assessment Modal -->
+    <div id="fit-assessment" class="survey-modal">
+        <div class="survey-modal-content">
+            <button class="survey-close-btn">&times;</button>
+            <div class="survey-header">
+                <h3 class="survey-program-title">Fit Level Assessment</h3>
+                <p class="survey-program-desc">Let's determine your ideal Fit program level based on your current lifestyle and fitness goals.</p>
+            </div>
+            <div class="survey-question-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-nav">
+                <button class="survey-back-btn" style="display: none;">Back</button>
+                <div class="survey-progress">Question <span class="current-question">1</span> of <span class="total-questions">5</span></div>
+                <button class="survey-next-btn">Next</button>
             </div>
         </div>
     </div>
@@ -255,6 +301,116 @@
         </div>
     </div>
 
+    <div id="hyrox-modal" class="program-modal">
+        <div class="program-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Hyrox Program</h2>
+            <div class="modal-body">
+                <p class="modal-description">Our Hyrox program is designed to optimize your performance across all eight workouts and the 1km runs. Built on scientific principles and real competition experience.</p>
+                
+                <div class="modal-features">
+                    <div class="modal-feature">
+                        <h3>Program Includes:</h3>
+                        <ul>
+                            <li>Structured weekly workouts</li>
+                            <li>Progressive overload system</li>
+                            <li>Recovery protocols</li>
+                            <li>Competition preparation</li>
+                        </ul>
+                    </div>
+                    <div class="modal-feature">
+                        <h3>Best For:</h3>
+                        <ul>
+                            <li>Hyrox competitors</li>
+                            <li>Endurance athletes</li>
+                            <li>Functional fitness enthusiasts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-primary find-program-trigger">
+                    Find My Level
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mass Program Modal -->
+    <div id="mass-modal" class="program-modal">
+        <div class="program-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Mass Program</h2>
+            <div class="modal-body">
+                <p class="modal-description">Our Mass program is scientifically designed to maximize muscle growth while maintaining functional strength. Built on proven hypertrophy principles and real-world experience.</p>
+                
+                <div class="modal-features">
+                    <div class="modal-feature">
+                        <h3>Program Includes:</h3>
+                        <ul>
+                            <li>Progressive overload system</li>
+                            <li>Nutrition guidelines</li>
+                            <li>Recovery protocols</li>
+                            <li>Supplement recommendations</li>
+                        </ul>
+                    </div>
+                    <div class="modal-feature">
+                        <h3>Best For:</h3>
+                        <ul>
+                            <li>Bodybuilding enthusiasts</li>
+                            <li>Strength athletes</li>
+                            <li>Size-focused trainees</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-primary find-program-trigger">
+                    Find My Level
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fit Program Modal -->
+    <div id="fit-modal" class="program-modal">
+        <div class="program-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Fit Program</h2>
+            <div class="modal-body">
+                <p class="modal-description">Our Fit program combines strength, conditioning, and mobility work to create a comprehensive fitness solution. Perfect for those seeking overall fitness and functional capacity.</p>
+                
+                <div class="modal-features">
+                    <div class="modal-feature">
+                        <h3>Program Includes:</h3>
+                        <ul>
+                            <li>Balanced workout structure</li>
+                            <li>Cardio integration</li>
+                            <li>Mobility work</li>
+                            <li>Lifestyle integration</li>
+                        </ul>
+                    </div>
+                    <div class="modal-feature">
+                        <h3>Best For:</h3>
+                        <ul>
+                            <li>General fitness enthusiasts</li>
+                            <li>Busy professionals</li>
+                            <li>Health-focused individuals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-primary find-program-trigger">
+                    Find My Level
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const observerOptions = {
@@ -282,5 +438,6 @@
     </script>
 
     <script src="js/survey.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html> 
