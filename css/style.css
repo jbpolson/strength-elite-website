@@ -905,8 +905,31 @@ body {
 
 .navbar-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: calc(var(--spacing-unit) * 2) 0;
+    position: relative; /* For absolute positioning of logo */
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.desktop-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar-text {
+    margin-right: auto; /* Push to left */
+}
+
+.navbar-links {
+    margin-left: auto; /* Push to right */
 }
 
 /* Update navbar text to be clickable */
@@ -945,12 +968,6 @@ body {
 
 .navbar-links a:hover {
     opacity: 1;
-}
-
-.navbar-brand {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .navbar-logo {
@@ -1603,86 +1620,6 @@ section::after {
     line-height: 1.7;
 } 
 
-/* Navigation updates */
-.navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.navbar-links {
-    display: flex;
-    gap: calc(var(--spacing-unit) * 4);
-}
-
-.navbar-links a {
-    color: var(--color-white);
-    text-decoration: none;
-    font-weight: 500;
-    opacity: 0.8;
-    transition: var(--transition-standard);
-}
-
-.navbar-links a:hover {
-    opacity: 1;
-} 
-
-/* Add smooth scrolling */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 120px;
-}
-
-/* Ensure programs section is visible */
-#programs {
-    position: relative;
-    z-index: 1;
-}
-
-/* Ensure fixed elements don't block */
-.navbar, .announcement-bar {
-    position: fixed;
-    z-index: 100;
-}
-
-/* Ensure mobile scaling remains proportional */
-@media (max-width: 768px) {
-    .navbar-content {
-        gap: calc(var(--spacing-unit) * 2);
-    }
-
-    .navbar-text, .navbar-links {
-        font-size: 0.9rem;
-    }
-
-    .navbar-logo {
-        height: 14px;
-        min-width: 80px;
-    }
-}
-
-/* Very small screens */
-@media (max-width: 480px) {
-    .navbar-content {
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: calc(var(--spacing-unit) * 1.5) 0;
-    }
-
-    .navbar-brand {
-        order: -1;
-        width: 100%;
-        text-align: center;
-        margin-bottom: calc(var(--spacing-unit) * 1.5);
-    }
-
-    .navbar-text, .navbar-links {
-        flex: 1;
-        text-align: center;
-    }
-}
-
 /* Instagram Feed Styles */
 .instagram-feed {
     padding: calc(var(--spacing-unit) * 12) 0;
@@ -1900,4 +1837,149 @@ html {
 
 .modal-footer {
     text-align: center;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: calc(var(--spacing-unit));
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-white);
+    position: relative;
+    transition: background 0.2s ease-out;
+}
+
+.hamburger-icon:before,
+.hamburger-icon:after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-white);
+    position: absolute;
+    transition: all 0.2s ease-out;
+}
+
+.hamburger-icon:before {
+    top: -6px;
+}
+
+.hamburger-icon:after {
+    bottom: -6px;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: calc(var(--spacing-unit) * 4);
+}
+
+.mobile-menu-item {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-menu-item:hover {
+    opacity: 0.8;
+}
+
+/* Mobile Menu Active States */
+.menu-open .mobile-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-open .hamburger-icon {
+    background: transparent;
+}
+
+.menu-open .hamburger-icon:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-open .hamburger-icon:after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .navbar-content {
+        justify-content: space-between;
+    }
+
+    /* Logo positioning remains the same for mobile */
+    .navbar-brand {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+} 
+
+/* Hide forms after footer */
+.contact + .survey-modal,
+.contact + .level-choice-modal,
+.contact + .contact-capture-modal,
+.contact + .program-modal,
+.site-footer ~ .survey-modal,
+.site-footer ~ .level-choice-modal,
+.site-footer ~ .contact-capture-modal,
+.site-footer ~ .program-modal {
+    display: none !important;
+}
+
+/* Also ensure modals only show when active */
+.survey-modal,
+.level-choice-modal,
+.contact-capture-modal,
+.program-modal {
+    display: none;
+}
+
+.survey-modal.active,
+.level-choice-modal.active,
+.contact-capture-modal.active,
+.program-modal.active {
+    display: flex !important;
 } 
