@@ -15,15 +15,32 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
-                <a href="#programs" class="navbar-text">
-                    Start Training
-                    <span class="button-arrow">→</span>
-                </a>
+                <!-- Add hamburger button -->
+                <button class="mobile-menu-toggle">
+                    <span class="hamburger-icon"></span>
+                </button>
+
                 <a href="index.html" class="navbar-brand">
                     <img src="./img/SE_HorizontalSE.svg" alt="Strength Elite" class="navbar-logo">
                 </a>
-                <div class="navbar-links">
-                    <a href="art-and-science.html">Art & Science <span class="button-arrow">→</span></a>
+
+                <!-- Mobile menu overlay -->
+                <div class="mobile-menu">
+                    <div class="mobile-menu-content">
+                        <a href="#programs" class="mobile-menu-item">Start Training</a>
+                        <a href="art-and-science.html" class="mobile-menu-item">Art & Science</a>
+                    </div>
+                </div>
+
+                <!-- Keep desktop menu (will be hidden on mobile) -->
+                <div class="desktop-menu">
+                    <a href="#programs" class="navbar-text">
+                        Start Training
+                        <span class="button-arrow">→</span>
+                    </a>
+                    <div class="navbar-links">
+                        <a href="art-and-science.html">Art & Science <span class="button-arrow">→</span></a>
+                    </div>
                 </div>
             </div>
         </div>

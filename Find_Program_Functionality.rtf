@@ -225,6 +225,79 @@ Total points determine the recommended level:
 - Final selection is recorded with both recommended and selected levels
 - System maintains original recommendation for analytics
 
+Program Level Assessments
+------------------------
+
+Each program (Hyrox, Mass, and Fit) now includes a dedicated level assessment feature that helps users determine their ideal program level. Here's how it works:
+
+1. Initial Program Selection
+   - User clicks on a program card
+   - Program modal opens with program details
+   - User clicks "Find My Level" button
+
+2. Level Assessment Options
+   - Users can either:
+     a) Directly select their level (Elite, Advanced, or Intermediate)
+     b) Take a 5-question assessment survey
+
+3. Program-Specific Assessments
+   Each program has a tailored 5-question assessment:
+
+   HYROX Assessment:
+   - 5km run time evaluation
+   - Wall balls performance
+   - Farmers carry capacity
+   - Sled experience
+   - Competition experience
+   
+   MASS Assessment:
+   - Bench press relative strength
+   - Squat form and experience
+   - Training history
+   - Recovery capacity
+   - Nutrition understanding
+   
+   FIT Assessment:
+   - Current activity level
+   - Workout experience
+   - Fitness goals
+   - Available training time
+   - Movement competency
+
+4. Level Determination
+   - System analyzes answers using the following logic:
+     * Elite: 4+ elite-level answers
+     * Advanced: 2+ elite-level or 3+ advanced-level answers
+     * Intermediate: All other combinations
+
+5. Contact Capture
+   - After level determination, users provide:
+     * Name
+     * Email
+   - Selected program and level are displayed
+   - Level can be manually adjusted if desired
+
+6. Data Processing
+   - User information and assessment results are:
+     * Stored in Google Sheets
+     * Used to redirect to appropriate Newie program
+   - Each program has a specific Newie URL based on the selection
+
+7. Program URLs
+   HYROX: https://share.newie.app/offerings/EFA35DBE-7FA3-42AA-8560-907EFDCA567B
+   MASS: https://share.newie.app/offerings/1C6A39F9-5200-4618-BD3C-1B7595C687A0
+   FIT: https://share.newie.app/offerings/5582A194-23C4-46BD-A061-2143F4D1ABBA
+
+Technical Implementation
+-----------------------
+- Survey configuration stored in SURVEY_CONFIG object
+- Modal-based interface with smooth transitions
+- Progress tracking during assessment
+- Back/Next navigation with question validation
+- Selected state visual feedback
+- Google Sheets integration for data collection
+- Newie app redirection based on program selection
+
 ---
 
 **End of Documentation**

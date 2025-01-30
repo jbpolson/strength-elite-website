@@ -251,6 +251,29 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
         }
     });
+
+    // Add this to your existing DOMContentLoaded event listener
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.body;
+
+    menuToggle.addEventListener('click', () => {
+        body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking menu items
+    document.querySelectorAll('.mobile-menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            body.classList.remove('menu-open');
+        });
+    });
+
+    // Close menu when clicking outside
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            body.classList.remove('menu-open');
+        }
+    });
 });
 
 // Add scroll event listener to verify scrolling
