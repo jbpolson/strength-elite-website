@@ -26,8 +26,12 @@ const surveyQuestions = [
     },
     {
         step: 3,
-        question: "What is your primary fitness goal?",
-        options: ["Train for event", "Build muscle", "Get fit"],
+        question: "What's your primary fitness goal?",
+        options: [
+            { text: "Compete in HYROX events", value: "hyrox" },
+            { text: "Build muscle and strength", value: "mass" },
+            { text: "Improve overall fitness", value: "fit" }
+        ],
         key: "primaryGoal"
     },
     {
@@ -65,6 +69,38 @@ const surveyQuestions = [
         question: "Almost there! Please provide your contact details",
         type: "contact",
         key: "contact"
+    },
+    {
+        text: "How would you describe your current training style?",
+        options: [
+            { text: "Endurance/Cardio focused", value: "hyrox" },
+            { text: "Weight training focused", value: "mass" },
+            { text: "Mix of different activities", value: "fit" }
+        ]
+    },
+    {
+        text: "How much time can you commit to training?",
+        options: [
+            { text: "1-2 hours, 5-6 days per week", value: "hyrox" },
+            { text: "45-90 minutes, 4-5 days per week", value: "mass" },
+            { text: "30-60 minutes, 3-4 days per week", value: "fit" }
+        ]
+    },
+    {
+        text: "What type of results motivate you most?",
+        options: [
+            { text: "Performance improvements", value: "hyrox" },
+            { text: "Visual changes in physique", value: "mass" },
+            { text: "Overall health and energy", value: "fit" }
+        ]
+    },
+    {
+        text: "What's your preferred training environment?",
+        options: [
+            { text: "Functional fitness facility", value: "hyrox" },
+            { text: "Traditional gym with weights", value: "mass" },
+            { text: "Anywhere I can move", value: "fit" }
+        ]
     }
 ];
 
@@ -541,8 +577,8 @@ function loadStep(stepNumber) {
         question.options.forEach(option => {
             stepHtml += `
                 <label class="survey-option">
-                    <input type="radio" name="${question.key}" value="${option}">
-                    <span class="option-text">${option}</span>
+                    <input type="radio" name="${question.key}" value="${option.value}">
+                    <span class="option-text">${option.text}</span>
                 </label>
             `;
         });
@@ -910,5 +946,73 @@ function showResults(program, level) {
 
 // Keep only the general survey code here
 const GENERAL_SURVEY_QUESTIONS = [
-    // ... your general survey questions
-]; 
+    {
+        text: "What's your primary fitness goal?",
+        options: [
+            { text: "Compete in HYROX events", value: "hyrox" },
+            { text: "Build muscle and strength", value: "mass" },
+            { text: "Improve overall fitness", value: "fit" }
+        ]
+    },
+    {
+        text: "How would you describe your current training style?",
+        options: [
+            { text: "Endurance/Cardio focused", value: "hyrox" },
+            { text: "Weight training focused", value: "mass" },
+            { text: "Mix of different activities", value: "fit" }
+        ]
+    },
+    {
+        text: "How much time can you commit to training?",
+        options: [
+            { text: "1-2 hours, 5-6 days per week", value: "hyrox" },
+            { text: "45-90 minutes, 4-5 days per week", value: "mass" },
+            { text: "30-60 minutes, 3-4 days per week", value: "fit" }
+        ]
+    },
+    {
+        text: "What type of results motivate you most?",
+        options: [
+            { text: "Performance improvements", value: "hyrox" },
+            { text: "Visual changes in physique", value: "mass" },
+            { text: "Overall health and energy", value: "fit" }
+        ]
+    },
+    {
+        text: "What's your preferred training environment?",
+        options: [
+            { text: "Functional fitness facility", value: "hyrox" },
+            { text: "Traditional gym with weights", value: "mass" },
+            { text: "Anywhere I can move", value: "fit" }
+        ]
+    }
+];
+
+// Add the program determination logic
+function determineProgram(answers) {
+    const counts = {
+        hyrox: 0,
+        mass: 0,
+        fit: 0
+    };
+    
+    // Count the votes for each program
+    answers.forEach(answer => {
+        counts[answer]++;
+    });
+    
+    // Find the program with the most votes
+    let recommendedProgram = 'fit'; // Default to Fit
+    let maxVotes = counts.fit;
+    
+    if (counts.hyrox > maxVotes) {
+        recommendedProgram = 'Hyrox';
+        maxVotes = counts.hyrox;
+    }
+    
+    if (counts.mass > maxVotes) {
+        recommendedProgram = 'Mass';
+    }
+    
+    return recommendedProgram;
+} 

@@ -298,6 +298,405 @@ Technical Implementation
 - Google Sheets integration for data collection
 - Newie app redirection based on program selection
 
+# Program Selection Pathways
+
+## 1. Direct Program Selection
+Athletes who know which program they want can select directly from three options:
+- HYROX
+- Mass
+- Fit
+
+### Program-Specific Level Assessment
+Each program has its own specialized assessment with 5 questions to determine the appropriate level.
+
+#### HYROX Assessment Questions:
+1. "What's your current 5km run time?"
+   - Under 20 mins (Elite)
+   - 20-25 mins (Advanced)
+   - Over 25 mins (Intermediate)
+
+2. "How many unbroken wall balls (20/14 lbs) can you perform?"
+   - 30+ reps (Elite)
+   - 15-30 reps (Advanced)
+   - Under 15 reps (Intermediate)
+
+3. "Farmers carry (2x24kg/2x16kg) - How far can you go without stopping?"
+   - 400m+ (Elite)
+   - 200-400m (Advanced)
+   - Under 200m (Intermediate)
+
+4. "Sled push/pull experience level?"
+   - Regular competitor (Elite)
+   - Some experience (Advanced)
+   - Beginner (Intermediate)
+
+5. "Previous HYROX competition experience?"
+   - Multiple competitions (Elite)
+   - One competition (Advanced)
+   - Never competed (Intermediate)
+
+#### Mass Assessment Questions:
+1. "What's your current bench press 1RM (relative to bodyweight)?"
+   - More than 1.5x bodyweight (Elite)
+   - 1.2-1.5x bodyweight (Advanced)
+   - Less than 1.2x bodyweight (Intermediate)
+
+2. "Squat experience and form?"
+   - Perfect form, heavy loads (Elite)
+   - Good form, moderate loads (Advanced)
+   - Learning proper form (Intermediate)
+
+3. "Training experience with hypertrophy programs?"
+   - 5+ years (Elite)
+   - 2-5 years (Advanced)
+   - 0-2 years (Intermediate)
+
+4. "How many intense sessions can you handle per week?"
+   - 5+ sessions (Elite)
+   - 3-4 sessions (Advanced)
+   - 1-2 sessions (Intermediate)
+
+5. "Nutrition understanding and compliance?"
+   - Track macros consistently (Elite)
+   - Basic nutrition knowledge (Advanced)
+   - Minimal experience (Intermediate)
+
+#### Fit Assessment Questions:
+1. "Current activity level per week?"
+   - Very active (6-7 days) (Elite)
+   - Moderately active (3-5 days) (Advanced)
+   - Sometimes active (1-2 days) (Intermediate)
+
+2. "Experience with structured workouts?"
+   - Regular gym-goer (Elite)
+   - Some experience (Advanced)
+   - Beginner (Intermediate)
+
+3. "Current fitness goals?"
+   - Performance focused (Elite)
+   - Body composition (Advanced)
+   - General health (Intermediate)
+
+4. "Time available for training?"
+   - 60+ mins/day (Elite)
+   - 30-60 mins/day (Advanced)
+   - <30 mins/day (Intermediate)
+
+5. "Movement competency (burpees, push-ups, etc.)?"
+   - Advanced movements (Elite)
+   - Basic movements (Advanced)
+   - Learning fundamentals (Intermediate)
+
+### Level Determination Logic:
+- Elite: 4+ Elite answers
+- Advanced: 2+ Elite answers OR 3+ Advanced answers
+- Intermediate: All other combinations
+
+## 2. General Program Finder
+For athletes unsure which program best suits them, the general survey helps determine the most appropriate program.
+
+### General Survey Questions:
+1. "What's your primary fitness goal?"
+   - Compete in HYROX events (HYROX + Elite)
+   - Build muscle and strength (Mass + Advanced)
+   - Improve overall fitness (Fit + Intermediate)
+
+2. "How would you describe your current training style?"
+   - Endurance/Cardio focused (HYROX + Advanced)
+   - Weight training focused (Mass + Advanced)
+   - Mix of different activities (Fit + Intermediate)
+
+3. "How much time can you commit to training?"
+   - 1-2 hours, 5-6 days per week (HYROX/Mass + Elite)
+   - 45-90 minutes, 4-5 days per week (Any + Advanced)
+   - 30-60 minutes, 3-4 days per week (Fit + Intermediate)
+
+4. "What type of results motivate you most?"
+   - Performance improvements (HYROX + Elite/Advanced)
+   - Visual changes in physique (Mass + Advanced)
+   - Overall health and energy (Fit + Intermediate)
+
+5. "What's your preferred training environment?"
+   - Functional fitness facility (HYROX + Advanced)
+   - Traditional gym with weights (Mass + Advanced)
+   - Anywhere I can move (Fit + Intermediate)
+
+### Enhanced Program & Level Determination Logic
+```javascript
+function determineRecommendation(answers) {
+    const programCounts = {
+        hyrox: 0,
+        mass: 0,
+        fit: 0
+    };
+    
+    const levelCounts = {
+        elite: 0,
+        advanced: 0,
+        intermediate: 0
+    };
+    
+    // Count both program and level indicators
+    answers.forEach(answer => {
+        // Update program counts
+        programCounts[answer.program]++;
+        
+        // Update level counts based on answer combinations
+        if (answer.program === 'hyrox' && answer.timeCommitment === 'high') {
+            levelCounts.elite++;
+        } else if (answer.program === 'mass' && answer.experience === 'experienced') {
+            levelCounts.advanced++;
+        }
+        // ... more level determination logic
+    });
+    
+    return {
+        recommendedProgram: determineProgram(programCounts),
+        recommendedLevel: determineLevel(levelCounts)
+    };
+}
+```
+
+### Updated UI Flow
+```
+Homepage
+    │
+    └── "Find Program" Button
+        │
+        └── General Survey Modal (5 Questions)
+            │
+            └── Recommendation Screen
+                ├── Program Recommendation
+                │   ├── Recommended Program (with reason)
+                │   └── Program Selection Dropdown
+                │
+                ├── Level Recommendation
+                │   ├── Recommended Level (with reason)
+                │   └── Level Selection Dropdown
+                │
+                └── Actions
+                    ├── "Confirm & Continue" Button
+                    └── "Close" Button
+                        │
+                        └── Contact Capture
+                            ├── Name
+                            ├── Email
+                            └── Redirect to Program
+```
+
+### Recommendation Screen Structure
+```
+┌─────────────────────────────────────────┐
+│ × Close                                 │
+├─────────────────────────────────────────┤
+│ Your Personalized Recommendation        │
+├─────────────────────────────────────────┤
+│ Recommended Program: HYROX              │
+│ Based on your focus on performance      │
+│ and time commitment                     │
+│                                         │
+│ Change Program: [Dropdown ▼]            │
+├─────────────────────────────────────────┤
+│ Recommended Level: Advanced             │
+│ Based on your training experience       │
+│ and current fitness level               │
+│                                         │
+│ Change Level: [Dropdown ▼]              │
+├─────────────────────────────────────────┤
+│      [Confirm & Continue Button]        │
+└─────────────────────────────────────────┘
+```
+
+### Key Improvements
+1. **Dual-Purpose Questions**
+   - Each answer contributes to both program and level determination
+   - More comprehensive assessment from the same number of questions
+
+2. **Transparent Recommendations**
+   - Shows reasoning behind each recommendation
+   - Builds trust with user
+
+3. **User Control**
+   - Ability to modify both program and level
+   - Single screen for all decisions
+   - Clear confirmation action
+
+4. **Streamlined Flow**
+   - Eliminates redundant program modal
+   - Faster path to final selection
+   - Clearer user journey
+
+5. **Better Mobile Experience**
+   - Single, scrollable recommendation screen
+   - Large, touch-friendly dropdowns
+   - Clear call-to-action button
+
+## Data Collection
+After either pathway, users provide:
+- Name
+- Email
+- Selected/Recommended Program
+- Determined Level
+This data is stored in Google Sheets for tracking and analysis.
+
+## Program URLs
+Final redirects go to:
+- HYROX: https://share.newie.app/offerings/EFA35DBE-7FA3-42AA-8560-907EFDCA567B
+- Mass: https://share.newie.app/offerings/1C6A39F9-5200-4618-BD3C-1B7595C687A0
+- Fit: https://share.newie.app/offerings/5582A194-23C4-46BD-A061-2143F4D1ABBA
+
+# UI/UX Flow Diagrams
+
+## 1. Direct Program Selection Flow
+
+```
+Homepage
+    │
+    ├── Program Cards (3 options)
+    │   ├── HYROX
+    │   ├── Mass
+    │   └── Fit
+    │
+    └── Click "Choose Program"
+        │
+        ├── Program Modal Opens
+        │   ├── Program Description
+        │   ├── Features List
+        │   └── "Find My Level" Button
+        │
+        └── Level Assessment Options
+            ├── Direct Level Selection
+            │   ├── Elite
+            │   ├── Advanced
+            │   └── Intermediate
+            │
+            └── Take Assessment (5 Questions)
+                │
+                └── Contact Capture
+                    ├── Name
+                    ├── Email
+                    └── Redirect to Program
+```
+
+## 2. General Program Finder Flow
+
+```
+Homepage
+    │
+    └── "Find Program" Button
+        │
+        └── General Survey Modal (5 Questions)
+            │
+            └── Recommendation Screen
+                ├── Program Recommendation
+                │   ├── Recommended Program (with reason)
+                │   └── Program Selection Dropdown
+                │
+                ├── Level Recommendation
+                │   ├── Recommended Level (with reason)
+                │   └── Level Selection Dropdown
+                │
+                └── Actions
+                    ├── "Confirm & Continue" Button
+                    └── "Close" Button
+                        │
+                        └── Contact Capture
+                            ├── Name
+                            ├── Email
+                            └── Redirect to Program
+```
+
+## 3. Modal Interactions
+
+### Survey Modal Structure
+```
+┌─────────────────────────────────┐
+│ × Close                         │
+├─────────────────────────────────┤
+│ Title                           │
+│ Description                     │
+├─────────────────────────────────┤
+│ Question                        │
+│ ○ Option 1                      │
+│ ○ Option 2                      │
+│ ○ Option 3                      │
+├─────────────────────────────────┤
+│ Back    Progress (1/5)    Next  │
+└─────────────────────────────────┘
+```
+
+### Program Modal Structure
+```
+┌─────────────────────────────────┐
+│ × Close                         │
+├─────────────────────────────────┤
+│ Program Title                   │
+│                                 │
+│ Description                     │
+├─────────────────────────────────┤
+│ Features         Requirements   │
+│ • Feature 1      • Req 1       │
+│ • Feature 2      • Req 2       │
+│ • Feature 3      • Req 3       │
+├─────────────────────────────────┤
+│      Find My Level Button       │
+└─────────────────────────────────┘
+```
+
+## 4. User Interaction States
+
+### Button States
+- Default: Blue background (#4339F2)
+- Hover: Darker blue (#3A32D9)
+- Active/Pressed: Even darker (#322BC0)
+- Disabled: Gray (#E5E5E5)
+
+### Form Validation
+- Required fields marked with *
+- Real-time validation
+- Error messages appear below fields
+- Submit button disabled until valid
+
+### Progress Indicators
+- Question number (e.g., "Question 1 of 5")
+- Back button hidden on first question
+- "Next" changes to "Finish" on last question
+- Loading state during submission
+
+## 5. Mobile Responsiveness
+
+### Breakpoints
+- Desktop: > 1024px
+- Tablet: 768px - 1024px
+- Mobile: < 768px
+
+### Mobile Adjustments
+- Full-screen modals
+- Larger touch targets
+- Stacked button layouts
+- Simplified navigation
+- Hamburger menu for main nav
+
+## 6. Error Handling
+
+### User Errors
+- Missing required fields
+- Invalid email format
+- No option selected
+- Session timeout
+
+### System Errors
+- Failed submission
+- Network issues
+- Loading errors
+- Redirect failures
+
+### Error Messages
+- Clear, friendly language
+- Actionable solutions
+- Visible feedback
+- Recovery options
+
 ---
 
 **End of Documentation**
