@@ -300,13 +300,22 @@
                     <strong class="selected-level-display"></strong> Level
                 </p>
                 
+                <div class="program-adjust">
+                    <p>You can adjust your program if you prefer:</p>
+                    <div class="program-options">
+                        <div class="option" data-value="Hyrox">Hyrox</div>
+                        <div class="option" data-value="Mass">Mass</div>
+                        <div class="option" data-value="Fit">Fit</div>
+                    </div>
+                </div>
+
                 <div class="level-adjust">
                     <p>You can adjust your level if you prefer:</p>
-                    <select id="directLevelSelect">
-                        <option value="Elite">Elite</option>
-                        <option value="Advanced">Advanced</option>
-                        <option value="Intermediate">Intermediate</option>
-                    </select>
+                    <div class="level-options">
+                        <div class="option" data-value="Elite">Elite</div>
+                        <div class="option" data-value="Advanced">Advanced</div>
+                        <div class="option" data-value="Intermediate">Intermediate</div>
+                    </div>
                 </div>
             </div>
             
@@ -424,6 +433,71 @@
                     Find My Level
                     <span class="button-arrow">→</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- General Survey Modal -->
+    <div id="survey-modal" class="survey-modal">
+        <div class="survey-modal-content">
+            <button class="survey-close-btn">&times;</button>
+            <div class="survey-header">
+                <h3 class="survey-program-title">Find Your Program</h3>
+                <p class="survey-program-desc">Let's find the perfect program for your goals and experience level.</p>
+            </div>
+            <div class="survey-question-container">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+            <div class="survey-nav">
+                <button class="survey-back-btn" style="display: none;">Back</button>
+                <div class="survey-progress">Question <span class="current-question">1</span> of <span class="total-questions">5</span></div>
+                <button class="survey-next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this after the survey modal -->
+    <div id="recommendation-modal" class="recommendation-modal">
+        <div class="recommendation-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="recommendation-title">Your Personalized Recommendation</h2>
+            
+            <div class="recommendation-section">
+                <div class="recommendation-program">
+                    <h3>Recommended Program</h3>
+                    <div class="recommendation-display">
+                        <span class="program-name"></span>
+                        <p class="program-reason"></p>
+                    </div>
+                    <div class="program-selection">
+                        <label>Change Program:</label>
+                        <select id="program-select">
+                            <option value="hyrox">HYROX</option>
+                            <option value="mass">Mass</option>
+                            <option value="fit">Fit</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="recommendation-level">
+                    <h3>Recommended Level</h3>
+                    <div class="recommendation-display">
+                        <span class="level-name"></span>
+                        <p class="level-reason"></p>
+                    </div>
+                    <div class="level-selection">
+                        <label>Change Level:</label>
+                        <select id="level-select">
+                            <option value="elite">Elite</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="intermediate">Intermediate</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recommendation-actions">
+                <button class="button button-primary confirm-recommendation">Confirm & Continue</button>
             </div>
         </div>
     </div>

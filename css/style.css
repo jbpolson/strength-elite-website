@@ -1127,12 +1127,12 @@ section::after {
 }
 
 .survey-modal-content {
+    position: relative;
     background: var(--color-white);
     border-radius: 12px;
-    padding: calc(var(--spacing-unit) * 6);
-    max-width: 800px;
+    padding: 32px;
     width: 100%;
-    position: relative;
+    max-width: 480px;
 }
 
 .survey-header {
@@ -1162,278 +1162,138 @@ section::after {
 }
 
 .survey-options {
-    display: grid;
-    gap: calc(var(--spacing-unit) * 2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
 }
 
-.survey-option {
-    display: flex;
-    align-items: center;
-    padding: calc(var(--spacing-unit) * 3);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+.option {
+    width: 100%;
+    padding: 24px;
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    font-size: 16px;
     cursor: pointer;
-    transition: var(--transition-standard);
-    margin-bottom: calc(var(--spacing-unit) * 2);
+    transition: all 0.2s ease;
 }
 
-.survey-option:hover {
-    border-color: var(--color-accent);
-    background: rgba(48, 48, 255, 0.05);
+.option:hover {
+    border-color: #4339F2;
+    background: rgba(67, 57, 242, 0.05);
 }
 
-/* Hide default radio button */
-.survey-option input[type="radio"] {
-    display: none;
+.option.selected {
+    border-color: #4339F2;
+    background: rgba(67, 57, 242, 0.05);
 }
 
-/* Style for selected option */
-.survey-option input[type="radio"]:checked + .option-text {
+/* Recommendation section styling */
+.recommendation-group {
+    margin-bottom: 32px;
+}
+
+.recommendation-group h3 {
+    font-size: 14px;
     font-weight: 500;
+    color: #6B7280;
+    margin-bottom: 8px;
 }
 
-.survey-option input[type="radio"]:checked {
-    background: var(--color-accent);
+.recommendation-value {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-/* Selected state styling */
-.survey-option input[type="radio"]:checked ~ .option-text,
-.survey-option.selected {
-    color: var(--color-accent);
+.recommendation-reason {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6B7280;
+    margin-bottom: 24px;
 }
 
-.survey-option input[type="radio"]:checked,
-.survey-option.selected {
-    border-color: var(--color-accent);
-    background: rgba(48, 48, 255, 0.1);
-    box-shadow: 0 2px 4px rgba(48, 48, 255, 0.1);
+/* Style dropdowns to match survey answers */
+.program-selection select,
+.level-selection select {
+    width: 100%;
+    padding: 16px;
+    background: var(--color-background-light);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
-.survey-nav {
+.program-selection select:hover,
+.level-selection select:hover {
+    border-color: var(--color-primary);
+}
+
+/* Match survey button styling and position */
+.recommendation-actions {
+    margin-top: auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: calc(var(--spacing-unit) * 4);
+    justify-content: flex-end; /* Right align */
+    padding-top: 24px;
 }
 
-.survey-back-btn,
-.survey-next-btn {
-    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+.confirm-recommendation {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #4339F2;
+    color: var(--color-white);
     border: none;
-    border-radius: 6px;
-    font-weight: 500;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: var(--transition-standard);
 }
 
-.survey-next-btn {
-    background: var(--color-accent);
-    color: var(--color-white);
+.confirm-recommendation:hover {
+    background-color: #3A32D9;
 }
 
-.survey-back-btn {
-    background: none;
-    color: var(--color-text);
-    opacity: 0.7;
-}
-
-.survey-progress {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* Footer Styles */
-.site-footer {
-    background-color: var(--color-text);
-    padding: calc(var(--spacing-unit) * 4) 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: calc(var(--spacing-unit) * 4);
-}
-
-.footer-brand {
-    flex-shrink: 0;
-}
-
-.footer-logo {
-    height: 20px;
-    width: auto;
-    opacity: 0.9;
-    filter: brightness(0) invert(1);
-    -webkit-filter: brightness(0) invert(1);
-    object-fit: contain;
-}
-
-.footer-info {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.credits {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.credits a {
-    color: var(--color-white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition-standard);
-}
-
-.credits a:hover {
-    opacity: 0.7;
-}
-
-.copyright {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Responsive adjustments */
+/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: calc(var(--spacing-unit) * 3);
+    .recommendation-modal-content {
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 520px;
+        margin: 16px;
     }
 } 
 
-/* Contact Capture Modal */
-.contact-capture-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.contact-capture-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.contact-capture-content {
-    background-color: var(--color-white);
-    width: 90%;
-    max-width: 500px;
-    margin: auto;
-    padding: calc(var(--spacing-unit) * 6);
-    border-radius: 16px;
-    position: relative;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-}
-
-.contact-capture-modal.active .contact-capture-content {
-    transform: translateY(0);
-}
-
-.contact-capture-close {
-    position: absolute;
-    top: calc(var(--spacing-unit) * 3);
-    right: calc(var(--spacing-unit) * 3);
-    background: none;
-    border: none;
+/* Add to existing survey styles */
+.recommendation-value {
     font-size: 24px;
-    cursor: pointer;
-    color: var(--color-text);
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 8px 0;
 }
 
-.contact-capture-title {
-    font-family: var(--font-primary);
-    font-size: 1.75rem;
-    margin-bottom: calc(var(--spacing-unit) * 2);
-    text-align: center;
+.recommendation-reason {
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
 }
 
-.contact-capture-text {
-    text-align: center;
-    margin-bottom: calc(var(--spacing-unit) * 4);
-    color: rgba(0, 0, 0, 0.7);
-}
-
-.contact-capture-form {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing-unit) * 3);
-}
-
-.contact-input {
+.survey-select {
     width: 100%;
-    padding: calc(var(--spacing-unit) * 2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    font-family: var(--font-primary);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: rgba(0, 0, 0, 0.02);
-}
-
-.contact-input:focus {
-    outline: none;
-    border-color: var(--color-text);
-    background-color: var(--color-white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.contact-submit-btn {
-    background-color: var(--color-text);
-    color: var(--color-white);
-    border: none;
-    padding: calc(var(--spacing-unit) * 2);
-    border-radius: 8px;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--color-background-light);
+    font-size: 16px;
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
 }
 
-.contact-submit-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-} 
-
-.program-confirmation {
-    text-align: center;
-    margin-bottom: calc(var(--spacing-unit) * 4);
+.survey-select:hover {
+    border-color: var(--color-primary);
 }
-
-.confirmation-text {
-    font-size: 1.1rem;
-    margin-bottom: calc(var(--spacing-unit) * 3);
-}
-
-.level-adjust {
-    margin-top: calc(var(--spacing-unit) * 3);
-}
-
-.level-adjust p {
-    margin-bottom: calc(var(--spacing-unit) * 2);
-    color: rgba(0, 0, 0, 0.7);
-}
-
-#directLevelSelect {
-    width: 100%;
-    padding: calc(var(--spacing-unit) * 2);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    font-family: var(--font-primary);
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, 0.02);
-    cursor: pointer;
-} 
 
 /* Modal Mobile Optimizations */
 @media (max-width: 768px) {
@@ -1982,4 +1842,360 @@ section::after {
 .contact-capture-modal.active,
 .program-modal.active {
     display: flex !important;
+} 
+
+/* Recommendation Modal Styles */
+.recommendation-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+}
+
+.recommendation-modal.active {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendation-modal-content {
+    background: var(--color-white);
+    border-radius: 12px;
+    width: 400px; /* Exact width to match survey */
+    height: 520px; /* Exact height to match survey */
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.recommendation-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 24px;
+    white-space: nowrap; /* Force single line */
+}
+
+.recommendation-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Style dropdowns to match survey answers */
+.program-selection select,
+.level-selection select {
+    width: 100%;
+    padding: 16px;
+    background: var(--color-background-light);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.program-selection select:hover,
+.level-selection select:hover {
+    border-color: var(--color-primary);
+}
+
+/* Match survey button styling and position */
+.recommendation-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end; /* Right align */
+    padding-top: 24px;
+}
+
+.confirm-recommendation {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #4339F2;
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirm-recommendation:hover {
+    background-color: #3A32D9;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .recommendation-modal-content {
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 520px;
+        margin: 16px;
+    }
+} 
+
+/* Add to existing survey styles */
+.recommendation-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 8px 0;
+}
+
+.recommendation-reason {
+    color: var(--color-text-secondary);
+    margin-bottom: 16px;
+}
+
+.survey-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: var(--color-background-light);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.survey-select:hover {
+    border-color: var(--color-primary);
+} 
+
+/* Survey Modal Styling */
+.survey-modal-content {
+    position: relative;
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* Close Button Positioning */
+.survey-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px; /* Changed from left to right */
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.survey-close-btn:hover {
+    opacity: 1;
+}
+
+/* Full-width Selection Options */
+.survey-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.option {
+    width: 100%;
+    padding: 24px;
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option:hover {
+    border-color: #4339F2;
+    background: rgba(67, 57, 242, 0.05);
+}
+
+.option.selected {
+    border-color: #4339F2;
+    background: rgba(67, 57, 242, 0.05);
+}
+
+/* Navigation Area */
+.survey-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+}
+
+.survey-back-btn {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+.survey-progress {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+}
+
+.survey-next-btn {
+    padding: 12px 24px;
+    background: #4339F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.survey-next-btn:hover {
+    background: #3A32D9;
+} 
+
+/* Contact Capture Modal */
+.contact-capture-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 2000; /* Ensure it's above other modals */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.contact-capture-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-capture-content {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+}
+
+.contact-capture-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.contact-capture-close:hover {
+    opacity: 1;
+}
+
+.contact-capture-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.program-confirmation {
+    margin-bottom: 32px;
+}
+
+.confirmation-text {
+    margin-bottom: 16px;
+}
+
+.level-adjust {
+    margin-top: 16px;
+}
+
+#directLevelSelect {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.contact-capture-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.contact-submit-btn {
+    padding: 12px 24px;
+    background: #4339F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.contact-submit-btn:hover {
+    background: #3A32D9;
+} 
+
+.program-adjust,
+.level-adjust {
+    margin-top: 24px;
+}
+
+.program-adjust p,
+.level-adjust p {
+    margin-bottom: 12px;
+    color: var(--color-text-secondary);
+}
+
+.program-options,
+.level-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Hide program options by default (shown only in Find Program flow) */
+.program-adjust {
+    display: none;
+}
+
+/* Show program options when isGeneralSurvey is true */
+.contact-capture-modal[data-survey-type="general"] .program-adjust {
+    display: block;
 } 
