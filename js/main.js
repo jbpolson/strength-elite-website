@@ -186,7 +186,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function initializeProgramModals() {
         console.log('=== Initialize Program Modals ===');
         
-        // Remove any existing event listeners
+        // Initialize close buttons for all modals
+        const modals = document.querySelectorAll('.program-modal');
+        modals.forEach(modal => {
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+        
+        // Rest of the modal initialization code...
         const findProgramTriggers = document.querySelectorAll('.find-program-trigger');
         console.log('Found Find Program triggers:', findProgramTriggers.length);
         

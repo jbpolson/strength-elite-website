@@ -343,6 +343,7 @@ body {
     background-color: var(--color-white);
     padding: calc(var(--spacing-unit) * 12) 0;
     scroll-margin-top: 80px;
+    padding-bottom: calc(var(--spacing-unit) * 12); /* Add bottom padding */
 }
 
 .section-title {
@@ -475,6 +476,7 @@ body {
 @media (max-width: 768px) {
     .programs {
         padding: calc(var(--spacing-unit) * 6) 0;
+        padding-bottom: calc(var(--spacing-unit) * 8); /* Slightly less padding on mobile */
     }
     
     .section-title {
@@ -485,8 +487,8 @@ body {
     
     .programs-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
+        gap: calc(var(--spacing-unit) * 3);
+        margin-bottom: calc(var(--spacing-unit) * 6);
     }
     
     .program {
@@ -536,8 +538,12 @@ body {
 
 /* Programming Section */
 .programming {
-    background-color: var(--color-background);
-    padding: calc(var(--spacing-unit) * 12) 0;
+    padding: calc(var(--spacing-unit) * 12) 0 0; /* Remove bottom padding */
+    scroll-margin-top: 80px;
+}
+
+.programming .container {
+    padding-bottom: 0; /* Remove container bottom padding */
 }
 
 .programming-intro {
@@ -555,6 +561,7 @@ body {
     gap: calc(var(--spacing-unit) * 6);
     max-width: 1000px;
     margin: 0 auto calc(var(--spacing-unit) * 12);
+    margin-bottom: calc(var(--spacing-unit) * 6); /* Add space between text and image */
 }
 
 .feature {
@@ -577,18 +584,35 @@ body {
     font-family: var(--font-primary);
 }
 
-.app-mockup {
-    margin-top: auto;
-    margin-bottom: -1px; /* Remove any gap at bottom */
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.app-mockup-section {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0; /* Remove any bottom margin */
+    padding-bottom: 0; /* Remove any bottom padding */
 }
 
-.mockup-img {
+.app-mockup {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+.app-mockup img {
+    width: 100%;
     max-width: 100%;
     height: auto;
     display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+}
+
+/* Remove any container spacing */
+.app-mockup-container {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
 }
 
 /* Remove old mockup styles */
@@ -904,7 +928,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: var(--color-accent);
+    background-color: rgba(0, 0, 0, 0.9);
     padding: calc(var(--spacing-unit) * 2) 0;
     z-index: 100;
     transition: background-color 0.3s ease;
@@ -912,7 +936,7 @@ body {
 
 /* Add scrolled state */
 .navbar.scrolled {
-    background-color: rgba(48, 48, 255, 0.9); /* Updated from 0.7 to 0.9 */
+    background-color: rgba(0, 0, 0, 1);
 }
 
 .navbar-content {
@@ -1624,8 +1648,18 @@ section::after {
 }
 
 .program-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-accent);
+}
+
+.program-button:hover .button-arrow {
+    color: var(--color-accent);
+    transform: translateX(4px);
+}
+
+.program-button:hover .program-title {
+    color: var(--color-accent);
 }
 
 /* Program Modal */
@@ -2335,5 +2369,68 @@ section::after {
     }
     to {
         transform: rotate(1turn);
+    }
+} 
+
+/* Update testimonial CTA button */
+.testimonial-cta .button {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: var(--font-weight-subhead);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.testimonial-cta .button:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.testimonial-cta .button-arrow {
+    transition: transform 0.2s ease;
+}
+
+.testimonial-cta .button:hover .button-arrow {
+    transform: translateX(4px);
+} 
+
+/* Footer styling */
+.footer {
+    padding: 2rem 0;
+    background-color: var(--color-background);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.footer-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-accent-hover);
+}
+
+.footer-copyright {
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
     }
 } 
