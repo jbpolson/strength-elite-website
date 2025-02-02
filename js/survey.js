@@ -129,9 +129,9 @@ const SURVEY_CONFIG = {
                 id: 'run_time',
                 text: "What's your current 5km run time?",
                 options: [
-                    { text: 'Under 20 mins', value: 'elite' },
-                    { text: '20-25 mins', value: 'advanced' },
-                    { text: 'Over 25 mins', value: 'intermediate' }
+                    { text: 'Under 17 mins', value: 'elite' },
+                    { text: 'Under 20 mins', value: 'advanced' },
+                    { text: 'Under 35 mins', value: 'intermediate' }
                 ]
             },
             {
@@ -402,7 +402,8 @@ function determineLevel(answers) {
 // Initialize survey functionality
 document.addEventListener('DOMContentLoaded', function() {
     const findProgramBtns = document.querySelectorAll('.button');
-    const modal = document.getElementById('surveyModal');
+    const assessmentModal = document.getElementById('surveyModal'); // For program assessments
+    const programModal = document.querySelector('.program-modal');
     const closeBtn = document.querySelector('.survey-close-btn');
     
     // Open modal on button click
@@ -414,13 +415,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Close modal on button click
-    closeBtn.addEventListener('click', closeSurvey);
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSurvey);
+    }
     
-    // Close modal on outside click
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeSurvey();
-        }
+    // Close survey modal on outside click
+    if (assessmentModal) {
+        assessmentModal.addEventListener('click', function(e) {
+            if (e.target === assessmentModal) {
+                closeSurvey();
+            }
+        });
+    }
+
+    // Close program modal on outside click
+    if (programModal) {
+        programModal.addEventListener('click', function(e) {
+            if (e.target === programModal) {
+                programModal.classList.remove('active');
+            }
+        });
+    }
+    
+    // Initialize program buttons
+    const programButtons = document.querySelectorAll('.program-button');
+    programButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const programType = this.dataset.program;
+            const modal = document.getElementById(`${programType}-modal`);
+            if (modal) {
+                modal.classList.add('active');
+            }
+        });
+    });
+
+    // Initialize Find Level/Focus buttons
+    const findLevelBtns = document.querySelectorAll('.find-program-trigger');
+    findLevelBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const programModal = this.closest('.program-modal');
+            if (programModal) {
+                const programType = programModal.id.replace('-modal', '');
+                programModal.classList.remove('active');
+                if (typeof window.openProgramAssessment === 'function') {
+                    window.openProgramAssessment(programType);
+                } else {
+                    console.error('Program assessment function not found');
+                }
+            }
+        });
     });
     
     // Sticky CTA visibility control
@@ -428,6 +472,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.hero');
     
     function toggleStickyCta() {
+        if (!heroSection || !stickyCta) return;
+        
         const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
         const scrollPosition = window.scrollY + window.innerHeight;
         
@@ -443,13 +489,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check on scroll
     window.addEventListener('scroll', toggleStickyCta);
-    
-    // Smooth scroll to programs section when clicking the sticky button
-    document.querySelector('.sticky-button').addEventListener('click', function(e) {
-        e.preventDefault();
-        const programsSection = document.querySelector('#programs');
-        programsSection.scrollIntoView({ behavior: 'smooth' });
-    });
 
     // Level choice modal functionality
     const programLinks = document.querySelectorAll('.program-link');
@@ -470,13 +509,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close modal
     levelChoiceClose.addEventListener('click', () => {
         levelChoiceModal.classList.remove('active');
-    });
-
-    // Close on outside click
-    levelChoiceModal.addEventListener('click', function(e) {
-        if (e.target === levelChoiceModal) {
-            levelChoiceModal.classList.remove('active');
-        }
     });
 
     // Handle direct level selection
@@ -504,7 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Survey modal close functionality
-    const surveyModal = document.getElementById('surveyModal');
+    const generalSurveyModal = document.getElementById('surveyModal'); // For general find program survey
     document.querySelectorAll('.survey-close-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             if (this.closest('.survey-modal')) {
@@ -529,11 +561,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Listen for scroll
     window.addEventListener('scroll', updateNavbar);
 
-    // Add this to your existing DOMContentLoaded event listener if not already present
+    // Update anchor click handler
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            
+            const target = document.querySelector(href);
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth'
@@ -546,12 +581,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // Survey functions
 function openSurvey() {
     const modal = document.getElementById('surveyModal');
+    if (!modal) {
+        console.error('Survey modal not found');
+        return;
+    }
     modal.classList.add('active');
     loadStep(1);
 }
 
 function closeSurvey() {
     const modal = document.getElementById('surveyModal');
+    if (!modal) {
+        console.error('Survey modal not found');
+        return;
+    }
     modal.classList.remove('active');
 }
 

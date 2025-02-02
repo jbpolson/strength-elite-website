@@ -1,0 +1,101 @@
+/**
+ * Contact Capture Modal Styling Guide
+ * 
+ * Colors:
+ * - Background: #F9FAFB (light gray)
+ * - Border: #E5E7EB (medium gray)
+ * - Text: #4B5563 (dark gray)
+ * - Placeholder: #9CA3AF (muted gray)
+ * - Accent: var(--color-accent) (brand blue)
+ * - Accent Hover: var(--color-accent-hover) (darker blue)
+ * 
+ * Spacing:
+ * - Form gap: 1rem
+ * - Section margins: 2rem
+ * - Input padding: 1rem
+ * - Options gap: 0.75rem
+ * 
+ * Typography:
+ * - Font Family: var(--font-primary)
+ * - Button size: 1.125rem
+ * - Input size: 1rem
+ * - Font weights: 600 for buttons and selected options
+ * 
+ * Components:
+ * 
+ * 1. Input Fields:
+ * - Full width
+ * - 2px border
+ * - 0.5rem border radius
+ * - Light gray background (#F9FAFB)
+ * - Transitions on focus
+ * - Focus state: white background, accent border
+ * 
+ * HTML Structure:
+ * <div class="contact-form">
+ *     <input type="text" id="nameInput" placeholder="Your Name" required>
+ *     <input type="email" id="emailInput" placeholder="Your Email" required>
+ * </div>
+ * 
+ * 2. Submit Button:
+ * - Full width
+ * - Accent background
+ * - White text
+ * - 0.5rem border radius
+ * - Bold weight (600)
+ * - Hover state darkens
+ * 
+ * HTML Structure:
+ * <button class="contact-submit-btn">Continue to Program</button>
+ * 
+ * 3. Level Options:
+ * - Stacked vertically using flex
+ * - Clickable div elements instead of radio buttons for better styling control
+ * - Data attributes store values
+ * - JavaScript handles selection state
+ * 
+ * HTML Structure:
+ * <div class="level-adjust">
+ *     <p>You can adjust your level if you prefer:</p>
+ *     <div class="options">
+ *         <div class="option" data-value="elite">Elite</div>
+ *         <div class="option" data-value="advanced">Advanced</div>
+ *         <div class="option" data-value="intermediate">Intermediate</div>
+ *     </div>
+ * </div>
+ * 
+ * JavaScript Selection Handler:
+ * options.forEach(option => {
+ *     option.addEventListener('click', function() {
+ *         const newLevel = this.textContent;
+ *         levelDisplay.textContent = newLevel;
+ *         modal.dataset.level = this.dataset.value;
+ *         options.forEach(opt => opt.classList.remove('selected'));
+ *         this.classList.add('selected');
+ *     });
+ * });
+ * 
+ * Transitions:
+ * - All hover/focus: 0.2s ease
+ * - Affects: borders, backgrounds
+ * 
+ * Layout:
+ * - Flex column for forms
+ * - Consistent spacing between sections
+ * - Full width elements
+ * - Clear visual hierarchy
+ * 
+ * Modal Structure:
+ * <div class="contact-capture-modal">
+ *     <div class="contact-capture-content">
+ *         <button class="survey-close-btn">&times;</button>
+ *         <h3 class="contact-capture-title">Confirm Your Selection</h3>
+ *         <div class="recommendation-text">
+ *             You have selected <strong class="selected-program-display"></strong> 
+ *             at level <strong class="selected-level-display"></strong>
+ *         </div>
+ *         <!-- Level Options -->
+ *         <!-- Contact Form -->
+ *     </div>
+ * </div>
+ */

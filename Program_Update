@@ -1,0 +1,219 @@
+# **Strength Elite | Final Documentation for the Updated Program Finder**
+
+This document consolidates the **Find Program** functionality updates for Strength Elite, featuring four programs (**Hyrox, Competition, Mass, Lean**) and their respective **tiers/focuses**. It includes:
+
+1. **Program Overviews** with “Program Includes” and “Best For” sections  
+2. **Updated Questionnaire Flow** for deciding on both **Program** and **Tier**  
+3. **Implementation Details** for easy integration into your existing system  
+
+---
+
+## **1. Overview of the Four Programs**
+
+Below are streamlined descriptions in the style of “Overview,” “Program Includes,” and “Best For.” These can be used for marketing copy, on-site program pages, or within modal windows when users explore each program.
+
+---
+
+### **1.1 Hyrox**
+
+#### **Overview**
+Our **Hyrox** program is built for athletes tackling fitness racing events like Hyrox, DecaFit, or Spartan. It merges high-intensity functional circuits with running intervals to replicate event conditions, develop speed, power, and endurance under fatigue.
+
+#### **Program Includes**
+- **Interval Running Protocols**: Targeted 5k work, progressive tempo/interval training  
+- **Functional Movements**: Sled pushes, farmer’s carries, wall balls, etc.  
+- **Strength-Endurance Sessions**: Moderate-to-heavy lifts with volume for sustained effort  
+- **Recovery Strategies**: Techniques to handle cumulative fatigue, taper phases close to race day  
+
+#### **Best For**
+- Athletes wanting to compete or improve in Hyrox-like events  
+- CrossFit enthusiasts transitioning to race-meets-gym competitions  
+- Runners seeking a functional fitness edge  
+- Anyone looking to blend endurance with functional strength
+
+**Tiers**  
+- **Elite**: Sub-17 5k and multiple high-level competition history  
+- **Advanced**: Sub-20 5k, occasional runs/races  
+- **Intermediate**: Sub-35 5k or new to combined running/functional training
+
+---
+
+### **1.2 Competition**
+
+#### **Overview**
+The **Competition** program is aimed at athletes in specific sports—either endurance (running, triathlon) or strength/power (team sports, powerlifting, CrossFit). It adapts to both pre-season and during-season demands, ensuring optimal performance and injury prevention.
+
+#### **Program Includes**
+- **Sport-Specific Strength Blocks**: Tailored for endurance (high-rep, power-endurance) or strength (explosive, power lifts)  
+- **Periodized Calendar**: Structured progression for Pre-Season (base building) and During-Season (maintenance, peaking)  
+- **Mobility & Recovery**: Sport-focused stretching, foam rolling, and rest protocols  
+- **Performance Testing**: Benchmarks at key phases (VO2 max, 1RM tests, speed drills, etc.)
+
+#### **Best For**
+- Endurance athletes (runners, triathletes, cyclists) requiring off-season building or in-season maintenance  
+- Strength/power athletes (powerlifting, CrossFit, team sports) needing sport-specific periodization  
+- Competitors looking for performance-driven, evidence-based S&C programming
+
+**Focus & Season Options**  
+- **Endurance Focus** or **Strength Focus**  
+- **Pre-Season** or **During-Season** blocks
+
+---
+
+### **1.3 Mass**
+
+#### **Overview**
+Our **Mass** program is designed to maximise muscle growth while preserving functional strength. Leveraging proven hypertrophy principles and real-world experience, it provides structured progressions and nutritional guidance to help you add size effectively.
+
+#### **Program Includes**
+- **Hypertrophy-Focused Routines**: Emphasis on moderate rep ranges (8–12) with progressive overload  
+- **Accessory Movements**: Address imbalances, develop a complete physique  
+- **Nutrition & Supplement Guidance**: Macronutrient targets, supplement recommendations (e.g., protein, creatine)  
+- **Recovery Protocols**: Structured deload weeks, rest intervals, and soft tissue work
+
+#### **Best For**
+- Bodybuilders aiming to increase lean muscle  
+- Strength athletes looking to add size without sacrificing base strength  
+- Anyone prioritizing muscle hypertrophy as a key goal
+
+**Tiers**  
+- **Elite**: 5+ years hypertrophy training, strong lifts (>1.25× BW bench, >1.5× BW squat)  
+- **Intermediate**: Fewer than 5 years structured hypertrophy experience, moderate relative strength
+
+---
+
+### **1.4 Lean**
+
+#### **Overview**
+Our **Lean** program focuses on balanced strength, aesthetics, and overall fitness. It merges weight training with strategic cardio to enhance muscle tone while promoting a lean, athletic body composition.
+
+#### **Program Includes**
+- **Full-Body Resistance Training**: Compound lifts plus targeted isolation for key muscle groups  
+- **Cardio Protocols**: A mix of HIIT and steady-state sessions to maintain or reduce body fat  
+- **Macro-Based Nutrition Framework**: Guidelines for caloric and macronutrient intake specific to leaning out  
+- **Monitoring & Adjustments**: Regular check-ins to track body composition and progress
+
+#### **Best For**
+- Individuals seeking a lean, sculpted physique alongside functional strength  
+- Those transitioning from weight loss to muscle definition  
+- Recreational bodybuilders, physique-focused clients, or general fitness enthusiasts
+
+**Focus Options**  
+- **Men’s Lean**: Typically emphasizes upper-body mass and balanced lower-body development  
+- **Women’s Lean**: Often emphasizes glute/leg focus and overall muscle tone
+
+---
+
+## **2. Updated Questionnaire Flow**
+
+### **2.1 General Survey (Steps 1–4)**
+
+1. **Primary Goal**  
+   - Compete in fitness racing (→ Hyrox)  
+   - Train for a specific sport/season (→ Competition)  
+   - Maximise muscle mass (→ Mass)  
+   - Develop a lean, aesthetic physique (→ Lean)
+
+2. **Training Preference**  
+   - Functional, intense workouts (Hyrox)  
+   - Sport-specific S&C (Competition)  
+   - Classic hypertrophy routines (Mass)  
+   - Balanced weights & cardio for aesthetics (Lean)
+
+3. **Time Commitment**  
+   - 5+ days/week, 1–2 hours/day  
+   - 3–5 days/week, ~1 hour/day  
+   - 1–3 days/week, under 45 minutes
+
+4. **Competition Ambitions**  
+   - Regularly competing/aim to compete (Hyrox or Competition)  
+   - Non-competitive focus on muscle gains (Mass)  
+   - Non-competitive focus on aesthetics (Lean)
+
+**Outcome**: Based on the user’s answers, a **program** is recommended (highest points or direct logic).
+
+### **2.2 Program-Specific Tier/Focus Questions**
+
+Once a program is identified, ask 2–3 follow-up questions:
+
+#### **Hyrox**  
+1. **5km PB**: Sub-17 (Elite), Sub-20 (Advanced), Sub-35 or terrible runner (Intermediate)  
+2. **Competition History**: Multiple races (Elite), occasional fun runs (Advanced), none (Intermediate)
+
+#### **Competition**  
+1. **Sport Type**: Endurance (running, triathlon) or Strength (team sports, powerlifting, CrossFit)  
+2. **Season Phase**: Pre-Season (building block) or During-Season (maintenance/peak)
+
+#### **Mass**  
+1. **Hypertrophy Experience**: 5+ years (Elite) or <5 years (Intermediate)  
+2. **Relative Strength**: >1.25× BW bench, >1.5× BW squat (Elite) or lower (Intermediate)
+
+#### **Lean**  
+1. **Gender-Specific Emphasis**: Men’s Lean or Women’s Lean  
+2. **Aesthetic vs. Performance**: Pure aesthetics → standard plan, or mild performance integration → additional functional lifts or cardio
+
+---
+
+## **3. Recommendation & Override**
+
+1. **Display** the suggested program + tier/focus:  
+   - “Based on your responses, we recommend **Hyrox (Advanced)**.”  
+2. **Allow Override**:  
+   - User can pick a different program or tier.  
+3. **Confirm & Continue**:  
+   - User enters Name + Email → system logs the final selection → redirect to relevant program URL.
+
+---
+
+## **4. Data Flow & Redirect**
+
+1. **Data Collection**:  
+   - Store user’s recommended vs. chosen program/tier in Google Sheets or your CRM.  
+2. **Redirect Links** (Examples; update as needed):
+   - **Hyrox**: `https://share.newie.app/offerings/EFA35DBE-7FA3-42AA-8560-907EFDCA567B`  
+   - **Mass**: `https://share.newie.app/offerings/1C6A39F9-5200-4618-BD3C-1B7595C687A0`  
+   - **Competition**: (Create a unique link if needed)  
+   - **Lean**: (Separate links for Men’s vs. Women’s, or a single link with user preference specified)
+
+---
+
+## **5. Technical Implementation**
+
+### **5.1 Survey Modal Structure**
+
+1. **General Questions** (Q1–Q4)  
+2. **Program-Specific** (Q5–Q6 or Q7)  
+3. **Recommendation Screen**: Program + Tier  
+4. **Override Options**  
+5. **Contact Capture** → **Redirect**
+
+### **5.2 Scoring or Direct Logic**
+
+- **Point-Based**: Each answer increments program/tier counters.  
+- **If/Then**: Key responses immediately assign Elite/Advanced/Intermediate or Men’s/Women’s.
+
+### **5.3 Visual Design**
+
+- **Multi-step modal** with a progress bar (e.g., “Step 2 of 6”).  
+- **Animated transitions** between steps for a modern feel.  
+- **Responsive layout** for mobile, tablet, desktop.
+
+### **5.4 Error Handling**
+
+- Validate required fields (Name, Email).  
+- Ensure at least one response is chosen per question.  
+- Provide friendly error messages.
+
+---
+
+## **6. Final Summary**
+
+By integrating this **expanded program lineup** (Hyrox, Competition, Mass, Lean) with their **tiers/focuses** and the **updated questionnaire**, Strength Elite’s **Find Program** functionality will:
+
+1. **Capture** each user’s goals and background.  
+2. **Recommend** the most appropriate program.  
+3. **Refine** with tailored tier or focus questions.  
+4. **Facilitate** user override for personal preference.  
+5. **Streamline** the flow to final enrollment, storing valuable data for analysis and lead nurturing.
+
+**End of Documentation**  

@@ -89,7 +89,6 @@
                     <div class="program-background"></div>
                     <div class="program-content">
                         <h3 class="program-title">Hyrox</h3>
-                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
                         <div class="program-footer">
                             <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
                             <button class="program-button" data-program="hyrox">
@@ -103,11 +102,10 @@
                 <div class="program">
                     <div class="program-background"></div>
                     <div class="program-content">
-                        <h3 class="program-title">Mass</h3>
-                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
+                        <h3 class="program-title">Competition</h3>
                         <div class="program-footer">
-                            <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
-                            <button class="program-button" data-program="mass">
+                            <p class="program-levels">Focus: <span>Endurance</span> • <span>Strength</span></p>
+                            <button class="program-button" data-program="competition">
                                 Choose Program
                                 <span class="button-arrow">→</span>
                             </button>
@@ -118,11 +116,24 @@
                 <div class="program">
                     <div class="program-background"></div>
                     <div class="program-content">
-                        <h3 class="program-title">Fit</h3>
-                        <p class="program-text" style="display: none;"><!-- Hidden text --></p>
+                        <h3 class="program-title">Mass</h3>
                         <div class="program-footer">
-                            <p class="program-levels">Available in: <span>Elite</span> • <span>Advanced</span> • <span>Intermediate</span></p>
-                            <button class="program-button" data-program="fit">
+                            <p class="program-levels">Available in: <span>Elite</span> • <span>Intermediate</span></p>
+                            <button class="program-button" data-program="mass">
+                                Choose Program
+                                <span class="button-arrow">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="program">
+                    <div class="program-background" style="background-image: url('./img/kev-portrait.png');"></div>
+                    <div class="program-content">
+                        <h3 class="program-title">Lean</h3>
+                        <div class="program-footer">
+                            <p class="program-levels">Focus: <span>Men's</span> • <span>Women's</span></p>
+                            <button class="program-button" data-program="lean">
                                 Choose Program
                                 <span class="button-arrow">→</span>
                             </button>
@@ -290,38 +301,23 @@
 
     <div class="contact-capture-modal">
         <div class="contact-capture-content">
-            <button class="contact-capture-close">&times;</button>
+            <button class="survey-close-btn">&times;</button>
             <h3 class="contact-capture-title">Confirm Your Selection</h3>
             
-            <div class="program-confirmation">
-                <p class="confirmation-text">
-                    You have selected:
-                    <strong class="selected-program-display"></strong> at 
-                    <strong class="selected-level-display"></strong> Level
-                </p>
-                
-                <div class="program-adjust">
-                    <p>You can adjust your program if you prefer:</p>
-                    <div class="program-options">
-                        <div class="option" data-value="Hyrox">Hyrox</div>
-                        <div class="option" data-value="Mass">Mass</div>
-                        <div class="option" data-value="Fit">Fit</div>
-                    </div>
-                </div>
-
-                <div class="level-adjust">
-                    <p>You can adjust your level if you prefer:</p>
-                    <div class="level-options">
-                        <div class="option" data-value="Elite">Elite</div>
-                        <div class="option" data-value="Advanced">Advanced</div>
-                        <div class="option" data-value="Intermediate">Intermediate</div>
-                    </div>
+            <div class="recommendation-text">
+                You have selected <strong class="selected-program-display"></strong> at level <strong class="selected-level-display"></strong>
+            </div>
+            
+            <div class="level-adjust">
+                <p>You can adjust your level if you prefer:</p>
+                <div class="options">
+                    <!-- Options will be dynamically inserted here -->
                 </div>
             </div>
             
-            <div class="contact-capture-form">
-                <input type="text" class="contact-input" id="directNameInput" placeholder="Your Name" required>
-                <input type="email" class="contact-input" id="directEmailInput" placeholder="Your Email" required>
+            <div class="contact-form">
+                <input type="text" id="nameInput" placeholder="Your Name" required>
+                <input type="email" id="emailInput" placeholder="Your Email" required>
                 <button class="contact-submit-btn">Continue to Program</button>
             </div>
         </div>
@@ -498,6 +494,80 @@
             
             <div class="recommendation-actions">
                 <button class="button button-primary confirm-recommendation">Confirm & Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Competition Program Modal -->
+    <div id="competition-modal" class="program-modal">
+        <div class="program-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Competition Program</h2>
+            <div class="modal-body">
+                <p class="modal-description">The Competition program is aimed at athletes in specific sports—either endurance (running, triathlon) or strength/power (team sports, powerlifting, CrossFit). It adapts to both pre-season and during-season demands, ensuring optimal performance and injury prevention.</p>
+                
+                <div class="modal-features">
+                    <div class="modal-feature">
+                        <h3>Program Includes:</h3>
+                        <ul>
+                            <li>Sport-Specific Strength Blocks</li>
+                            <li>Periodized Calendar</li>
+                            <li>Mobility & Recovery</li>
+                            <li>Performance Testing</li>
+                        </ul>
+                    </div>
+                    <div class="modal-feature">
+                        <h3>Best For:</h3>
+                        <ul>
+                            <li>Endurance athletes</li>
+                            <li>Strength/power athletes</li>
+                            <li>Performance-driven competitors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-primary find-program-trigger">
+                    Find My Focus
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Mass Program Modal content and add Lean Program Modal -->
+    <div id="lean-modal" class="program-modal">
+        <div class="program-modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Lean Program</h2>
+            <div class="modal-body">
+                <p class="modal-description">Our Lean program focuses on balanced strength, aesthetics, and overall fitness. It merges weight training with strategic cardio to enhance muscle tone while promoting a lean, athletic body composition.</p>
+                
+                <div class="modal-features">
+                    <div class="modal-feature">
+                        <h3>Program Includes:</h3>
+                        <ul>
+                            <li>Full-Body Resistance Training</li>
+                            <li>Cardio Protocols</li>
+                            <li>Macro-Based Nutrition Framework</li>
+                            <li>Monitoring & Adjustments</li>
+                        </ul>
+                    </div>
+                    <div class="modal-feature">
+                        <h3>Best For:</h3>
+                        <ul>
+                            <li>Individuals seeking a lean, sculpted physique</li>
+                            <li>Those transitioning from weight loss</li>
+                            <li>Physique-focused clients</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button button-primary find-program-trigger">
+                    Find My Focus
+                    <span class="button-arrow">→</span>
+                </button>
             </div>
         </div>
     </div>
