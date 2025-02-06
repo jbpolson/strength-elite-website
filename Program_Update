@@ -2,7 +2,7 @@
 
 This document consolidates the **Find Program** functionality updates for Strength Elite, featuring four programs (**Hyrox, Competition, Mass, Lean**) and their respective **tiers/focuses**. It includes:
 
-1. **Program Overviews** with “Program Includes” and “Best For” sections  
+1. **Program Overviews** with "Program Includes" and "Best For" sections  
 2. **Updated Questionnaire Flow** for deciding on both **Program** and **Tier**  
 3. **Implementation Details** for easy integration into your existing system  
 
@@ -10,7 +10,7 @@ This document consolidates the **Find Program** functionality updates for Streng
 
 ## **1. Overview of the Four Programs**
 
-Below are streamlined descriptions in the style of “Overview,” “Program Includes,” and “Best For.” These can be used for marketing copy, on-site program pages, or within modal windows when users explore each program.
+Below are streamlined descriptions in the style of "Overview," "Program Includes," and "Best For." These can be used for marketing copy, on-site program pages, or within modal windows when users explore each program.
 
 ---
 
@@ -21,7 +21,7 @@ Our **Hyrox** program is built for athletes tackling fitness racing events like 
 
 #### **Program Includes**
 - **Interval Running Protocols**: Targeted 5k work, progressive tempo/interval training  
-- **Functional Movements**: Sled pushes, farmer’s carries, wall balls, etc.  
+- **Functional Movements**: Sled pushes, farmer's carries, wall balls, etc.  
 - **Strength-Endurance Sessions**: Moderate-to-heavy lifts with volume for sustained effort  
 - **Recovery Strategies**: Techniques to handle cumulative fatigue, taper phases close to race day  
 
@@ -99,8 +99,8 @@ Our **Lean** program focuses on balanced strength, aesthetics, and overall fitne
 - Recreational bodybuilders, physique-focused clients, or general fitness enthusiasts
 
 **Focus Options**  
-- **Men’s Lean**: Typically emphasizes upper-body mass and balanced lower-body development  
-- **Women’s Lean**: Often emphasizes glute/leg focus and overall muscle tone
+- **Men's Lean**: Typically emphasizes upper-body mass and balanced lower-body development  
+- **Women's Lean**: Often emphasizes glute/leg focus and overall muscle tone
 
 ---
 
@@ -130,7 +130,7 @@ Our **Lean** program focuses on balanced strength, aesthetics, and overall fitne
    - Non-competitive focus on muscle gains (Mass)  
    - Non-competitive focus on aesthetics (Lean)
 
-**Outcome**: Based on the user’s answers, a **program** is recommended (highest points or direct logic).
+**Outcome**: Based on the user's answers, a **program** is recommended (highest points or direct logic).
 
 ### **2.2 Program-Specific Tier/Focus Questions**
 
@@ -149,7 +149,7 @@ Once a program is identified, ask 2–3 follow-up questions:
 2. **Relative Strength**: >1.25× BW bench, >1.5× BW squat (Elite) or lower (Intermediate)
 
 #### **Lean**  
-1. **Gender-Specific Emphasis**: Men’s Lean or Women’s Lean  
+1. **Gender-Specific Emphasis**: Men's Lean or Women's Lean  
 2. **Aesthetic vs. Performance**: Pure aesthetics → standard plan, or mild performance integration → additional functional lifts or cardio
 
 ---
@@ -157,7 +157,7 @@ Once a program is identified, ask 2–3 follow-up questions:
 ## **3. Recommendation & Override**
 
 1. **Display** the suggested program + tier/focus:  
-   - “Based on your responses, we recommend **Hyrox (Advanced)**.”  
+   - "Based on your responses, we recommend **Hyrox (Advanced)**."  
 2. **Allow Override**:  
    - User can pick a different program or tier.  
 3. **Confirm & Continue**:  
@@ -168,12 +168,12 @@ Once a program is identified, ask 2–3 follow-up questions:
 ## **4. Data Flow & Redirect**
 
 1. **Data Collection**:  
-   - Store user’s recommended vs. chosen program/tier in Google Sheets or your CRM.  
+   - Store user's recommended vs. chosen program/tier in Google Sheets or your CRM.  
 2. **Redirect Links** (Examples; update as needed):
    - **Hyrox**: `https://share.newie.app/offerings/EFA35DBE-7FA3-42AA-8560-907EFDCA567B`  
    - **Mass**: `https://share.newie.app/offerings/1C6A39F9-5200-4618-BD3C-1B7595C687A0`  
    - **Competition**: (Create a unique link if needed)  
-   - **Lean**: (Separate links for Men’s vs. Women’s, or a single link with user preference specified)
+   - **Lean**: (Separate links for Men's vs. Women's, or a single link with user preference specified)
 
 ---
 
@@ -190,11 +190,11 @@ Once a program is identified, ask 2–3 follow-up questions:
 ### **5.2 Scoring or Direct Logic**
 
 - **Point-Based**: Each answer increments program/tier counters.  
-- **If/Then**: Key responses immediately assign Elite/Advanced/Intermediate or Men’s/Women’s.
+- **If/Then**: Key responses immediately assign Elite/Advanced/Intermediate or Men's/Women's.
 
 ### **5.3 Visual Design**
 
-- **Multi-step modal** with a progress bar (e.g., “Step 2 of 6”).  
+- **Multi-step modal** with a progress bar (e.g., "Step 2 of 6").  
 - **Animated transitions** between steps for a modern feel.  
 - **Responsive layout** for mobile, tablet, desktop.
 
@@ -208,9 +208,9 @@ Once a program is identified, ask 2–3 follow-up questions:
 
 ## **6. Final Summary**
 
-By integrating this **expanded program lineup** (Hyrox, Competition, Mass, Lean) with their **tiers/focuses** and the **updated questionnaire**, Strength Elite’s **Find Program** functionality will:
+By integrating this **expanded program lineup** (Hyrox, Competition, Mass, Lean) with their **tiers/focuses** and the **updated questionnaire**, Strength Elite's **Find Program** functionality will:
 
-1. **Capture** each user’s goals and background.  
+1. **Capture** each user's goals and background.  
 2. **Recommend** the most appropriate program.  
 3. **Refine** with tailored tier or focus questions.  
 4. **Facilitate** user override for personal preference.  
